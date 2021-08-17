@@ -2,17 +2,22 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   ssr: false,
+  router: {
+    base: '/webmaps/'
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'web-maps',
+    title: 'Awesome web maps with gridded data',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Various ways to plot gridded data on an interactive web map' },
+      { hid: 'og:image', property: 'og:image', content: '/preview_image.png' },
+      { hid: 'twitter:image', property: 'twitter:image', content: '/preview_image.png' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
