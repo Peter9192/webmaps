@@ -9,7 +9,7 @@ import { PolygonLayer } from "@deck.gl/layers";
 export default {
   async mounted() {
     // Load the data
-    const era5Data = await fetch("/era5_data_cutout.json").then((res) =>
+    const era5Data = await fetch("era5_data_cutout.json").then((res) =>
       res.json()
     );
 
