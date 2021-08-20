@@ -16,8 +16,9 @@
       <p>
         <a href="https://github.com/Peter9192/webmaps">Source code on GH.</a>
       </p>
+      <p>Blog post in preparation.</p>
       <p>
-        Contains modified Copernicus Climate Change Service information [2021].
+        Example figures display modified Copernicus Climate Change Service information [2021].
       </p>
     </div>
   </div>
