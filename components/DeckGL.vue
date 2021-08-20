@@ -29,7 +29,7 @@ export default {
     // Deck.gl layer
     // const AIR_PORTS =
     //   "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
-    const cpmData = await fetch('/cpmData.json').then(res => res.json())
+    const cpmData = await fetch('/era5_data_cutout.json').then(res => res.json())
     const deckLayer = new LeafletLayer({
       views: [new MapView({ repeat: true })],
       layers: [
@@ -106,10 +106,10 @@ export default {
         //   wireframe: true,
         //   lineWidthMinPixels: 1,
           getPolygon: (d) => [
-            [d.lon - 0.01375, d.lat - 0.01375],
-            [d.lon + 0.01375, d.lat - 0.01375],
-            [d.lon + 0.01375, d.lat + 0.01375],
-            [d.lon - 0.01375, d.lat + 0.01375],
+            [d.lon - 0.25, d.lat - 0.25],
+            [d.lon + 0.25, d.lat - 0.25],
+            [d.lon + 0.25, d.lat + 0.25],
+            [d.lon - 0.25, d.lat + 0.25],
           ],
           getElevation: 1,
           getFillColor: (d) => d.color,
