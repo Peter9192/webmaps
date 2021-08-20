@@ -9,7 +9,7 @@
       </p>
       <Leaflet class="m-4" />
       <p>
-        See <a href="hvplot_image.html">here</a> for export for hvplot and
+        See <a href="http://peter9192.github.io/webmaps/hvplot_image.html">here</a> for export for hvplot and
         <NuxtLink to="/deckgl">here</NuxtLink> for a version rendered with
         deck.gl.
       </p>

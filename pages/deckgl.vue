@@ -4,7 +4,7 @@
       <h1 class="text-4xl">deck.gl map</h1>
       <p>
         Background tiles from openstreetmap, overlaid with ERA5 data as polygon
-        layer.
+        layer (loading may take a while).
       </p>
       <DeckGL />
     </div>
