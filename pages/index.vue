@@ -1,14 +1,24 @@
 <template>
-  <div class="h-screen p-10">
-    <!-- <h2 class="text-4xl">My toy maps</h2> -->
-    <div class="grid grid-cols-2 gap-4 justify-items-evenly">
-      <!-- <Bokeh /> -->
-      <!-- <OpenLayers /> -->
-      <Leaflet />
-      <DeckGL />
-      <div class="wrap"><iframe class="frame" src="/hvplot_image.html"></iframe></div>
-      <div class="wrap"><iframe class="frame" src="/hvplot_quadmesh.html"></iframe></div>
-      </iframe>
+  <div class="h-screen p-10 flex place-items-center gap-4">
+    <div class="w-screen flex flex-col place-items-center gap-4">
+      <h2 class="m-4 text-4xl">Plotting gridded data on a map</h2>
+      <p>
+        Leaflet map with background tiles from openstreetmap, custom overlay
+        tiles, AR6 reference regions converted to geojson, and an square polygon
+        drawn over the North Sea.
+      </p>
+      <Leaflet class="m-4" />
+      <p>
+        See <a href="/hvplot_image.html">here</a> for export for hvplot and
+        <NuxtLink to="/deckgl">here</NuxtLink> for a version rendered with
+        deck.gl.
+      </p>
+      <p>
+        <a href="https://github.com/Peter9192/webmaps">Source code on GH.</a>
+      </p>
+      <p>
+        Contains modified Copernicus Climate Change Service information [2021].
+      </p>
     </div>
   </div>
 </template>
@@ -17,15 +27,8 @@
 </script>
 
 <style scoped>
-.wrap { width: 600px; height: 420px; padding: 0; overflow: hidden; }
-.frame { width: 1000px; height: 700px; border: 1px solid black; }
-.frame {
-  -ms-zoom: 0.6;
-  -moz-transform: scale(0.6);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.6);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.6);
-  -webkit-transform-origin: 0 0;
+a {
+  font-style: italic;
+  color: blue;
 }
 </style>

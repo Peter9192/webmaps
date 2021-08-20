@@ -5,31 +5,33 @@
 <script>
 export default {
     async mounted (){
-        // Base map
-        var map = L.map('mapid').setView([52, 10], 4);
-        // var map = L.map('mapid').setView([51.505, -0.09], 13);
 
-        // Nice background by openstreatmap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+      // Load some shapes
+      const ar6Shapes = await fetch('/IPCC-WGI-reference-regions-v4.geojson').then(res => res.json())
 
-        //  Adding my own slippy tiles
-        // L.tileLayer('/era5_tiles/{z}/{x}/{y}.png', {attribution: 'ERA5 temperature data'}).setOpacity(0.9).addTo(map);
+      // Create some interesting layers
+      const background = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'})
+      const tiles = L.tileLayer('/era5_tiles/{z}/{x}/{y}.png', {attribution: 'ERA5 temperature data'}).setOpacity(0.9)
+      const shapes = L.geoJSON(ar6Shapes, {onEachFeature: (feature, layer) => { layer.bindTooltip(feature.properties.Name) }})
+      const image = L.imageOverlay('/era5_image.png', [[-85, -180], [85, 180]], {attribution: 'ERA5 temperature data'}).setOpacity(0.7)
+      const marker = L.marker([51.5, -0.09]).bindPopup('A pretty CSS3 popup.<br> Easily customizable.').openPopup();
+      const rectangle = L.rectangle([[50, 0], [55, 5]], {color: "#ffffff", weight: 1}) // ymin xmin ymax xmax
 
-        // Adding a geojson shapefile
-        const ar6Shapes = await fetch('/IPCC-WGI-reference-regions-v4.geojson').then(res => res.json())
-        L.geoJSON(ar6Shapes, {onEachFeature: (feature, layer) => { layer.bindTooltip(feature.properties.Name) }}).addTo(map);
+      // Create the map
+      var map = L.map('mapid', {
+        center: [52, 10],
+        zoom: 2,
+        layers: [background, image]
+      })
 
-        // Adding an image overlay
-        var imageUrl = '/era5_image.png',
-        imageBounds = [[-85, -180], [85, 180]];
-        L.imageOverlay(imageUrl, imageBounds, {attribution: 'ERA5 temperature data'}).setOpacity(0.7).addTo(map);
-
-        // Custom marker example
-        // L.marker([51.5, -0.09]).addTo(map).bindPopup('A pretty CSS3 popup.<br> Easily customizable.').openPopup();
-
-        // Adding a rectangle
-        // var bounds = [[50, 0], [55, 5]]  // ymin xmin ymax xmax
-        // L.rectangle(bounds, {color: "#ffffff", weight: 1}).addTo(map);
+      L.control.layers(
+        {"Background": background},
+        {"Tiles": tiles,
+         "Shapes": shapes,
+         "Image": image,
+         "Marker": marker,
+         "Rectangle": rectangle},
+      ).addTo(map);
     }
 }
 </script>
